@@ -1,0 +1,41 @@
+<style>
+    #map {
+        width: 100%;
+        height: 600px;
+    }
+
+    #legend {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+    }
+
+    .info.legend {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+    }
+
+    .info.legend h4 {
+        margin: 0 0 10px;
+    }
+
+    .info.legend .scale {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .info.legend .scale span {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .info.legend .low {
+        color: #000;
+    }
+
+    .info.legend .high {
+        color: #000;
+    }
+</style>
