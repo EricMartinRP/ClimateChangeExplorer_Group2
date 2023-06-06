@@ -1,41 +1,42 @@
-<style>
-    #map {
-        width: 100%;
-        height: 600px;
-    }
-
-    #legend {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 10px;
-    }
-
-    .info.legend {
-        font-family: Arial, sans-serif;
-        line-height: 1.5;
-    }
-
-    .info.legend h4 {
-        margin: 0 0 10px;
-    }
-
-    .info.legend .scale {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .info.legend .scale span {
-        font-size: 12px;
-        font-weight: bold;
-    }
-
-    .info.legend .low {
-        color: #000;
-    }
-
-    .info.legend .high {
-        color: #000;
-    }
-</style>
+body {
+    padding: 0;
+    margin: 0;
+  }
+  
+  #map,
+  body,
+  html {
+    height: 100%;
+  }
+  
+  /* Separate the legend from the map overlay */
+  .legend {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .legend div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .legend i {
+    width: 20px;
+    height: 10px;
+    margin-right: 5px;
+  }
+  /* Separate the legend title */
+  .legend .legend-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .popup-5 {
+    background-color: #800080;
+    color: white;
+  }
