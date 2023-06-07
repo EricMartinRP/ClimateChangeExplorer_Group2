@@ -65,4 +65,3 @@ d3.json(geoData).then(function(data) {
   // Adding the legend to the map
   legend.addTo(myMap);
 });
-  
