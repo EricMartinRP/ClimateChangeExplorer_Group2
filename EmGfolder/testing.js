@@ -1,4 +1,4 @@
-console.log(data);
+// console.log(Object.values(data[0].alabama.max_temp));
 
 let states = Object.keys(data[0])
 
@@ -12,191 +12,207 @@ let states = Object.keys(data[0])
   //code for initial plots
   function init() {
    
-    let years = Object.keys(data[0])
+    let years = Object.keys(data[0].alabama.precip)
 
-    let initdata = [{
+    let initBar = [{
       type: 'bar',
-      x: Object.values(data[0].alabama.precip),
-      y: Object.keys(data[0].alabama.precip),
-      orientation: 'h'
+      x: years, 
+      y:Object.values(data[0].alabama.precip),
+      name: "Precipitation by Year"
     }]
     
+    var layoutBar1 = {
+      title: {text:'Precipitation by Year',font: {    
+          family: 'Arial',    
+          size: 20    
+        },},
+      xaxis: {title: {text: 'Years',font: {
+        family: 'Arial',    
+            size: 14,    
+            color: '#7f7f7f'    
+          }},},
+      yaxis: {title: {text: 'Precipitation',font: {
+                family: 'Arial',
+                size: 14,
+                color: '#7f7f7f'
+              }}}};
+
+
+
    // plot the initial bar chart
-   Plotly.newPlot('bar', initdata)
+   Plotly.newPlot('bar', initBar, layoutBar1)
 
-  }
-  //   var initbub = [{
+  
+    var initLine1 = {
 
-  //     x: otuIds,
-  //     y: sampleValues,
-  //     text: otuLabels,
-  //     mode: 'markers',
+      x:years,
+      y:Object.values(data[0].alabama.max_temp),
+      type: 'scatter',
+      name: "Max Temp"
   
-  //     marker: {
-  //       size: sampleValues,
-  //       color: otuIds
-  //     },
-  
-  //     type: 'scatter'
-  
-  
-  //     }];
+      };
 
-  //     var initgauge = [{
-  //       domain: { x: [0, 1], y: [0, 1] },
-  //       value: numWash,
-  //       title: { text: "Belly Button Washing Freqeuncy: Scrubs per Week" },
-  //       type: "indicator",
-  //       mode: "gauge+number",
-  
-  //       gauge: {
-  //         axis: { range: [null, 9], tickwidth: 2, tickcolor: "darkblue" },
-  //         bar: { color: "black" },
-  //         bgcolor: "white",
-  //         borderwidth: 2,
-  //         bordercolor: "gray",
-  //         steps: [
-  //           { range: [0, 1], color: "maroon" },
-  //           { range: [1, 2], color: "red" },
-  //           { range: [2, 3], color: "orange" },
-  //           { range: [3, 4], color: "yellow" },
-  //           { range: [4, 5], color: "green" },
-  //           { range: [5, 6], color: "cyan" },
-  //           { range: [6, 7], color: "blue" },
-  //           { range: [7, 8], color: "violet" },
-  //           { range: [8, 9], color: "purple" },
-  //         ],
-  
-  //       }
-  
-  //     }
-  
-  //     ];
-  
-  //     var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
-  
-      
+      var initLine2 = {
+
+        x: years,
+        y: Object.values(data[0].alabama.min_temp),
+        type: 'scatter',
+        name: "Min Temp"
+
+    
+        };
+
+     var lineData = [initLine1, initLine2]
 
 
-      
+     var layoutLine1 = {
+      title: {text:'Changes in Average Temperature by Year',font: {    
+          family: 'Arial',  size: 20},},
+      xaxis: {title: {text: 'Years',font: {
+        family: 'Arial', size: 14, color: '#7f7f7f'    
+          }},},
+      yaxis: {title: {text: 'Temperature (C)',font: {
+                family: 'Arial', size: 14, color: '#7f7f7f'
+              }}}};
+
+    //Plot the initial bubble chart
+    Plotly.newPlot("line", lineData, layoutLine1)
+
+    let initBar2 = [{
+      type: 'bar',
+      x: years, 
+      y:Object.values(data[0].alabama.wind_speed),
+      name: "Wind Speed by Year"
+    }]
+    
+    var layoutBar2 = {
+      title: {text:'Wind Speed by Year',font: {    
+          family: 'Arial',    
+          size: 20    
+        },},
+      xaxis: {title: {text: 'Years',font: {
+        family: 'Arial',    
+            size: 14,    
+            color: '#7f7f7f'    
+          }},},
+      yaxis: {title: {text: 'Wind Speed',font: {
+                family: 'Arial',
+                size: 14,
+                color: '#7f7f7f'
+              }}}};
+
+
+   // plot the initial bar chart
+   Plotly.newPlot('bar2', initBar2, layoutBar2)
+
+  };
  
-  //   //Plot the initial bubble chart
-  //   Plotly.newPlot('bubble', initbub)
-  //   // plot the initial gauge
-  //   Plotly.newPlot('gauge', initgauge, layout);
-  //   //initial demographic info
-  //   let demInfo = data.metadata[0]; 
-  //   let metadata1 = d3.select("#sample-metadata")
-  //   Object.entries(demInfo).forEach(([key, value]) => {
-  //   metadata1.append("p").text(`${key}: ${value}`);
-  // });
-
-  // };
   //call the initial function to get the charts to show up initially
   init();
 
-  // // match the dropdown to a function
-  // var dropdown = document.getElementById("selDataset")
-  // dropdown.onchange = function optionChanged() {
+  // match the dropdown to a function
+  var dropdown = document.getElementById("selDataset")
+  dropdown.onchange = function optionChanged() {
   
-  //   var selectedValue = document.getElementById("selDataset").value
-
-  //   let x=0
-  //   for (let j = 0; j < data.names.length; j++) {
-  //   if (selectedValue == data.names[j]) {x=j}}
-
-  //     // define the variables to be used in the charts
-
-  //   let sampleValues = data.samples[x].sample_values;
-  //   let otuIds = data.samples[x].otu_ids;
-  //   let otuLabels = data.samples[x].otu_labels;
-
-  //   let sortedValues = sampleValues.sort((a,b) => b - a);
-
-  //   let topTen = sortedValues.slice(0,10)
+    var selectedValue = document.getElementById("selDataset").value
 
 
-  //   var bbtrace = [{
-  //     type: 'bar',
-  //     x: topTen,
-  //     y: otuIds.map(id => `OTU ${id}`),
-  //     text:otuLabels,
-  //     orientation: 'h'
-  //   }];
-  //   // plot the chart
-  //   Plotly.newPlot('bar', bbtrace)
+    let years = Object.keys(data[0].alabama.precip)
+    let precipValue = Object.values(data[0][selectedValue].precip)
+    let maxTemp = Object.values(data[0][selectedValue].max_temp)
+    let minTemp = Object.values(data[0][selectedValue].min_temp)
+    let windSpeed = Object.values(data[0][selectedValue].wind_speed)
 
-  //   // bubble plot data
-  //   var bubbletrace = [{
+    console.log(maxTemp)
 
-  //   x: otuIds,
-  //   y: sampleValues,
-  //   text: otuLabels,
-  //   mode: 'markers',
-
-  //   marker: {
-
-  //     size: sampleValues,
-  //     color: otuIds
-
-  //   },
-
-  //   type: 'scatter'
-
-
-  //   }];
-
-  //   //Plot the bubble chart
-  //   Plotly.newPlot('bubble', bubbletrace)
-
-  //   //Gauge
-
-  //   let numWash = data.metadata[x].wfreq
-
-  //   var gdata = [{
-  //     domain: { x: [0, 1], y: [0, 1] },
-  //     value: numWash,
-  //     title: { text: "Belly Button Washing Freqeuncy: Scrubs per Week" },
-  //     type: "indicator",
-  //     mode: "gauge+number",
-
-  //     gauge: {
-  //       axis: { range: [null, 9], tickwidth: 2, tickcolor: "darkblue" },
-  //       bar: { color: "black" },
-  //       bgcolor: "white",
-  //       borderwidth: 2,
-  //       bordercolor: "gray",
-  //       steps: [
-  //         { range: [0, 1], color: "maroon" },
-  //         { range: [1, 2], color: "red" },
-  //         { range: [2, 3], color: "orange" },
-  //         { range: [3, 4], color: "yellow" },
-  //         { range: [4, 5], color: "green" },
-  //         { range: [5, 6], color: "cyan" },
-  //         { range: [6, 7], color: "blue" },
-  //         { range: [7, 8], color: "violet" },
-  //         { range: [8, 9], color: "purple" },
-  //       ],
-
-  //     }
-
-  //   }
-
-  //   ];
-
-  //   var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
-
-  //   // plot the gauge
-  //   Plotly.newPlot('gauge', gdata, layout);
-
-  //   //Demographic Information (Metadata)
-  //   let demInfo = data.metadata[x]; 
+    let Bar1 = [{
+      type: 'bar',
+      x: years, 
+      y:precipValue,
+      name: "Precipitation by Year"
+    }]
     
-  //   // Iterate over each key-value pair in the metadata and display it
-  //   let metadata1 = d3.select("#sample-metadata")
-  //       metadata1.html("") //clear previous entry
-  //     Object.entries(demInfo).forEach(([key, value]) => {
-  //       metadata1.append("p").text(`${key}: ${value}`);
-  //     });
+    var layoutBar1 = {
+      title: {text:'Precipitation by Year',font: {    
+          family: 'Arial',    
+          size: 20    
+        },},
+      xaxis: {title: {text: 'Years',font: {
+        family: 'Arial',    
+            size: 14,    
+            color: '#7f7f7f'    
+          }},},
+      yaxis: {title: {text: 'Precipitation',font: {
+                family: 'Arial',
+                size: 14,
+                color: '#7f7f7f'
+              }}}};
 
-  // };
+   // plot the bar chart
+   Plotly.newPlot('bar', Bar1, layoutBar1)
+
+
+
+   var lineOne = {
+
+    x:years,
+    y:maxTemp,
+    type: 'scatter',
+    name: "Max Temp"
+
+    };
+
+    var lineTwo = {
+
+      x: years,
+      y: minTemp,
+      type: 'scatter',
+      name: "Min Temp"
+
+  
+      };
+
+   var doubleLines = [lineOne, lineTwo]
+
+
+   var layoutLines = {
+    title: {text:'Changes in Average Temperature by Year',font: {    
+        family: 'Arial',  size: 20},},
+    xaxis: {title: {text: 'Years',font: {
+      family: 'Arial', size: 14, color: '#7f7f7f'    
+        }},},
+    yaxis: {title: {text: 'Temperature (C)',font: {
+              family: 'Arial', size: 14, color: '#7f7f7f'
+            }}}};
+
+  //Plot the double line chart
+  Plotly.newPlot("line", doubleLines, layoutLines)
+
+  let barTwo = [{
+    type: 'bar',
+    x: years, 
+    y:windSpeed,
+    name: "Wind Speed by Year"
+  }]
+  
+  var windLayout = {
+    title: {text:'Wind Speed by Year',font: {    
+        family: 'Arial',    
+        size: 20    
+      },},
+    xaxis: {title: {text: 'Years',font: {
+      family: 'Arial',    
+          size: 14,    
+          color: '#7f7f7f'    
+        }},},
+    yaxis: {title: {text: 'Wind Speed',font: {
+              family: 'Arial',
+              size: 14,
+              color: '#7f7f7f'
+            }}}};
+
+
+ // plot the initial bar chart
+ Plotly.newPlot('bar2', barTwo, windLayout)
+
+  };
