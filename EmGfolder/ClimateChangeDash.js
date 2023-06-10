@@ -158,7 +158,7 @@ let states = Object.keys(data[0])
     x:years,
     y:maxTemp,
     type: 'scatter',
-    name: "Max Temp"
+    name: "Max Temp (C)"
 
     };
 
@@ -167,7 +167,7 @@ let states = Object.keys(data[0])
       x: years,
       y: minTemp,
       type: 'scatter',
-      name: "Min Temp"
+      name: "Min Temp (C)"
 
   
       };

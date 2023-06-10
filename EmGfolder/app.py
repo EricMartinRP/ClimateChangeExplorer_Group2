@@ -26,7 +26,7 @@ def index():
 def get_data():
     data = list(collection.find())  # Retrieve all documents from the collection
     # return jsonify(data)
-    return render_template('testing.html', test_data=data)
+    return render_template('ClimateChangeDashboard.html', test_data=data)
 
 if __name__ == '__main__':
     app.run()
