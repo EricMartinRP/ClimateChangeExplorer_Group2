@@ -15,18 +15,18 @@ except Exception as e:
     print(e)
 
 # Get data from MongoDB
-db = client['Group_Project_3']
-collection = db['Group_Project_3']
+db = client['project3']
+collection = db['tempdata']
 
 @app.route('/')
 def index():
-    return render_template('Projectindex.html')
+    return render_template('testing.html')
 
 @app.route('/api/data', methods=['GET'])
 def get_data():
     data = list(collection.find())  # Retrieve all documents from the collection
     # return jsonify(data)
-    return render_template('test.html', test_data=data)
+    return render_template('ClimateChangeDashboard.html', test_data=data)
 
 if __name__ == '__main__':
     app.run()
